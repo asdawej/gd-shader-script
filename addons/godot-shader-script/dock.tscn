@@ -1,0 +1,104 @@
+[gd_scene format=3 uid="uid://d3kydpaenh006"]
+
+[ext_resource type="Script" uid="uid://g3s3x76tiedu" path="res://addons/godot-shader-script/dock.gd" id="1_3hliw"]
+
+[node name="Dock" type="VBoxContainer" unique_id=148483995]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -204.0
+offset_top = -65.0
+offset_right = 204.0
+offset_bottom = 65.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+script = ExtResource("1_3hliw")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1374486701]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=1202306119]
+layout_mode = 2
+
+[node name="InputLabel" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=1642652511]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 20
+text = "Input File Path:"
+
+[node name="OutputLabel" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=1716911522]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 20
+text = "Output File Path:"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer" unique_id=1512617318]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="InputLineEdit" type="LineEdit" parent="HBoxContainer/VBoxContainer2" unique_id=1094939575]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 20
+placeholder_text = "res://example.gdss"
+
+[node name="OutputLineEdit" type="LineEdit" parent="HBoxContainer/VBoxContainer2" unique_id=2109527205]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 20
+placeholder_text = "res://example.gdshader"
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="HBoxContainer" unique_id=74897180]
+layout_mode = 2
+
+[node name="InputFileButton" type="Button" parent="HBoxContainer/VBoxContainer3" unique_id=1714105725]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 20
+text = "..."
+
+[node name="OutputFileButton" type="Button" parent="HBoxContainer/VBoxContainer3" unique_id=1579929960]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 20
+text = "..."
+
+[node name="TranslateButton" type="Button" parent="." unique_id=1559247591]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 20
+text = "Translate GDSS File"
+
+[node name="InputFileDialog" type="FileDialog" parent="." unique_id=531809122]
+unique_name_in_owner = true
+oversampling_override = 1.0
+title = "Open a File"
+position = Vector2i(0, 36)
+size = Vector2i(640, 600)
+file_mode = 0
+filters = PackedStringArray("*.gdss")
+
+[node name="OutputFileDialog" type="FileDialog" parent="." unique_id=304188111]
+unique_name_in_owner = true
+size = Vector2i(640, 600)
+filters = PackedStringArray("*.gdshader")
+
+[connection signal="pressed" from="HBoxContainer/VBoxContainer3/InputFileButton" to="." method="_on_input_file_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer3/OutputFileButton" to="." method="_on_output_file_button_pressed"]
+[connection signal="pressed" from="TranslateButton" to="." method="_on_translate_button_pressed"]
+[connection signal="file_selected" from="InputFileDialog" to="." method="_on_input_file_dialog_file_selected"]
+[connection signal="file_selected" from="OutputFileDialog" to="." method="_on_output_file_dialog_file_selected"]
