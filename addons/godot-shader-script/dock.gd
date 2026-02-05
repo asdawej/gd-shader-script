@@ -13,16 +13,17 @@ func _on_output_file_button_pressed() -> void:
 	output_file_dialog.popup_file_dialog()
 
 func _on_translate_button_pressed() -> void:
-	var gdss_file_path := input_line_edit.text
-	var gdshader_file_path: String
+	var gdss_path := input_line_edit.text
+	var gdshader_path: String
 	if output_line_edit.text.is_empty():
-		output_line_edit.text = gdss_file_path.get_basename() + '.gdshader'
-	gdshader_file_path = output_line_edit.text
-	var gdss_file := FileAccess.open(gdss_file_path, FileAccess.READ)
-	var gdshader_file := FileAccess.open(gdshader_file_path, FileAccess.WRITE)
-	GDSSTranslator.translate(gdss_file, gdshader_file)
-	gdss_file.close()
-	gdshader_file.close()
+		output_line_edit.text = gdss_path.get_basename() + '.gdshader'
+	gdshader_path = output_line_edit.text
+	var gdss_file := FileAccess.open(gdss_path, FileAccess.READ)
+	var gdss_code := gdss_file.get_as_text()
+	var gdshader_code := GDSSTranslator.translate(gdss_code)
+	var shader := Shader.new()
+	shader.code = gdshader_code
+	ResourceSaver.save(shader, gdshader_path)
 
 func _on_input_file_dialog_file_selected(path: String) -> void:
 	input_line_edit.text = path

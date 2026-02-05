@@ -21,7 +21,7 @@ version_control/autoload_on_startup=true
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/godot-shader-script/plugin.cfg", "res://addons/godot_shader_script/plugin.cfg")
+enabled=PackedStringArray("res://addons/godot-shader-script/plugin.cfg")
 
 [physics]
 
