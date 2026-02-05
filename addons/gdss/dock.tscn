@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://d3kydpaenh006"]
 
-[ext_resource type="Script" uid="uid://g3s3x76tiedu" path="res://addons/godot-shader-script/dock.gd" id="1_3hliw"]
+[ext_resource type="Script" uid="uid://g3s3x76tiedu" path="res://addons/gdss/dock.gd" id="1_3hliw"]
 
 [node name="Dock" type="VBoxContainer" unique_id=148483995]
 anchors_preset = 8

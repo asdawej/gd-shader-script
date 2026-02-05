@@ -1,10 +1,10 @@
 @tool extends EditorPlugin
 
 
-const dock_scn := preload('res://addons/godot-shader-script/dock.tscn')
+const dock_scn := preload('res://addons/gdss/dock.tscn')
 var dock: EditorDock
 
-const gdss_importer_gds := preload('res://addons/godot-shader-script/gdss_import_plugin.gd')
+const gdss_importer_gds := preload('res://addons/gdss/gdss_import_plugin.gd')
 var gdss_importer: EditorImportPlugin
 
 func _enter_tree() -> void:
