@@ -27,33 +27,17 @@ GDSS:
 
 ```
 # Single-line comment.
-a: int = 0 # Another single-line comment.
+var a: int = 0 # Another single-line comment.
 
 # Multi-line
 # comment.
 
 ## Multi-line
 ## documentation comment.
-@uniform b: int = 0
+@uniform var b: int = 0
 
 ## Single-line documentation comment.
-@uniform c: int = 0
-```
-
-## Casting
-
-GSL:
-
-```
-float a = float(1);
-uint b = uint(2);
-```
-
-GDSS:
-
-```
-a: float = 1
-b: uint = 2
+@uniform var c: int = 0
 ```
 
 ## Precision
@@ -69,9 +53,9 @@ highp vec4 a = vec4(0.0, 1.0, 2.0, 3.0);
 GDSS:
 
 ```
-@precision(low) a: vec4 = vec4(0.0, 1.0, 2.0, 3.0)
-@precision(medium) a: vec4 = vec4(0.0, 1.0, 2.0, 3.0)
-@precision(high) a: vec4 = vec4(0.0, 1.0, 2.0, 3.0)
+@precision(low) var a: vec4 = vec4(0.0, 1.0, 2.0, 3.0)
+@precision(medium) var a: vec4 = vec4(0.0, 1.0, 2.0, 3.0)
+@precision(high) var a: vec4 = vec4(0.0, 1.0, 2.0, 3.0)
 ```
 
 ## Arrays
@@ -91,27 +75,13 @@ COLOR.r = arr4[0];
 GDSS:
 
 ```
-arr1: int[3] = { 1.0, 0.5, 0.0 }
-arr2: bool[] = { true, true, false }
-@const @precision(low) arr3: vec3[1] = { vec3(0, 0, 1) }
+var arr1: int[3] = { 1.0, 0.5, 0.0 }
+var arr2: bool[] = { true, true, false }
+@precision(low) const arr3: vec3[1] = { vec3(0, 0, 1) }
 
-arr4: float[3]
+var arr4: float[3]
 arr4[0] = 1.0
 COLOR.r = arr4[0]
-```
-
-## Constants
-
-GSL:
-
-```
-const int a = 0;
-```
-
-GDSS:
-
-```
-@const a: int = 0
 ```
 
 ## Structs
@@ -128,7 +98,7 @@ GDSS:
 
 ```
 struct PointLight:
-    field1: int
+    var field1: int
 ```
 
 ## Operators
@@ -197,7 +167,7 @@ elif other_cond:
 else:
     something3
 
-result: int = cond ? 1 : 2
+var result: int = cond ? 1 : 2
 
 match i:
     case -1:
@@ -247,7 +217,7 @@ varying vec3 color;
 GDSS:
 
 ```
-@varying color: vec3
+@varying var color: vec3
 ```
 
 ## Interpolation qualifiers
@@ -280,12 +250,12 @@ uniform int character_speed: hint_enum("Slow:30", "Average:60", "Very Fast:200")
 GDSS:
 
 ```
-@uniform(source_color) color: vec4
-@uniform(hint_range(0, 1)) amount: float
+@uniform(source_color) var color: vec4
+@uniform(hint_range(0, 1)) var amount: float
 @uniform(hint_enum("OpenSimplex2", "Cellular", "Perlin", "Value"))
-noise_type: int = 0
+var noise_type: int = 0
 @uniform(hint_enum("Slow:30", "Average:60", "Very Fast:200"))
-character_speed: int = 60
+var character_speed: int = 60
 ```
 
 ## Uniform groups
@@ -302,7 +272,7 @@ GDSS:
 
 ```
 @group_uniforms(MyGroup.MySubgroup)
-uniform sampler2D test
+@uniform var test: sampler2D
 @end_group_uniforms # Close uniform group.
 ```
 
@@ -317,7 +287,7 @@ global uniform vec4 my_color;
 GDSS:
 
 ```
-@global @uniform my_color: vec4
+@global @uniform var my_color: vec4
 ```
 
 ## Per-instance uniforms
@@ -332,5 +302,5 @@ GDSS:
 
 ```
 @instance @uniform(source_color)
-my_color: vec4 = vec4(1.0, 0.5, 0.0, 1.0)
+var my_color: vec4 = vec4(1.0, 0.5, 0.0, 1.0)
 ```

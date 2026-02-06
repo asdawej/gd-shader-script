@@ -2,10 +2,10 @@
 
 
 func _get_importer_name() -> String:
-	return 'godotshaderscript'
+	return 'gdshaderscript'
 
 func _get_visible_name() -> String:
-	return 'Godot Shader Script'
+	return 'GD Shader Script'
 
 func _get_recognized_extensions() -> PackedStringArray:
 	return ['gdss']
