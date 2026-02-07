@@ -63,9 +63,9 @@ GDSS:
 GSL:
 
 ```glsl
-int arr1[3] = int[3] (0, 1, 2);
+int arr1[3] = { 0, 1, 2 };
 bool arr2[] = { true, true, false };
-const lowp vec3 arr3[1] = lowp vec3[1] (vec3(0, 0, 1));
+const lowp vec3 arr3[1] = { vec3(0, 0, 1) };
 
 float arr4[3];
 arr4[0] = 1.0;
