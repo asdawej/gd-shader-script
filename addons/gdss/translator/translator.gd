@@ -2,4 +2,4 @@
 
 
 static func translate(gdss: String) -> String:
-	return ''
+    return ''

@@ -4,7 +4,7 @@ Here lists the grammar correspondences between Godot Shading Language (abbr. as 
 
 GSL:
 
-```
+```glsl
 // Single-line comment.
 int a = 0; // Another single-line comment.
 
@@ -25,7 +25,7 @@ uniform int c = 0;
 
 GDSS:
 
-```
+```gdscript
 # Single-line comment.
 var a: int = 0 # Another single-line comment.
 
@@ -44,7 +44,7 @@ var a: int = 0 # Another single-line comment.
 
 GSL:
 
-```
+```glsl
 lowp vec4 a = vec4(0.0, 1.0, 2.0, 3.0);
 mediump vec4 a = vec4(0.0, 1.0, 2.0, 3.0);
 highp vec4 a = vec4(0.0, 1.0, 2.0, 3.0);
@@ -52,7 +52,7 @@ highp vec4 a = vec4(0.0, 1.0, 2.0, 3.0);
 
 GDSS:
 
-```
+```gdscript
 @precision(low) var a: vec4 = vec4(0.0, 1.0, 2.0, 3.0)
 @precision(medium) var a: vec4 = vec4(0.0, 1.0, 2.0, 3.0)
 @precision(high) var a: vec4 = vec4(0.0, 1.0, 2.0, 3.0)
@@ -62,7 +62,7 @@ GDSS:
 
 GSL:
 
-```
+```glsl
 int arr1[3] = int[3] (0, 1, 2);
 bool arr2[] = { true, true, false };
 const lowp vec3 arr3[1] = lowp vec3[1] (vec3(0, 0, 1));
@@ -74,7 +74,7 @@ COLOR.r = arr4[0];
 
 GDSS:
 
-```
+```gdscript
 var arr1: int[3] = { 1.0, 0.5, 0.0 }
 var arr2: bool[] = { true, true, false }
 @precision(low) const arr3: vec3[1] = { vec3(0, 0, 1) }
@@ -88,7 +88,7 @@ COLOR.r = arr4[0]
 
 GSL:
 
-```
+```glsl
 struct PointLight {
     int field1;
 };
@@ -96,7 +96,7 @@ struct PointLight {
 
 GDSS:
 
-```
+```gdscript
 struct PointLight:
     var field1: int
 ```
@@ -105,7 +105,7 @@ struct PointLight:
 
 GSL:
 
-```
+```glsl
 // Only display the difference.
 &&
 ||
@@ -113,7 +113,7 @@ GSL:
 
 GDSS:
 
-```
+```gdscript
 # Only display the difference.
 and
 or
@@ -123,7 +123,7 @@ or
 
 GSL:
 
-```
+```glsl
 if (cond) {
     something1;
 } else if (other_cond) {
@@ -159,7 +159,7 @@ do {
 
 GDSS:
 
-```
+```gdscript
 if cond:
     something1
 elif other_cond:
@@ -193,7 +193,7 @@ while cond
 
 GSL:
 
-```
+```glsl
 int sum(int a, int b) {
     return a + b;
 }
@@ -201,7 +201,7 @@ int sum(int a, int b) {
 
 GDSS:
 
-```
+```gdscript
 func sum(a: int, b: int) -> int:
     return a + b
 ```
@@ -210,13 +210,13 @@ func sum(a: int, b: int) -> int:
 
 GSL:
 
-```
+```glsl
 varying vec3 color;
 ```
 
 GDSS:
 
-```
+```gdscript
 @varying var color: vec3
 ```
 
@@ -224,14 +224,14 @@ GDSS:
 
 GSL:
 
-```
+```glsl
 flat
 smooth
 ```
 
 GDSS:
 
-```
+```gdscript
 @flat
 @smooth
 ```
@@ -240,7 +240,7 @@ GDSS:
 
 GSL:
 
-```
+```glsl
 uniform vec4 color : source_color;
 uniform float amount : hint_range(0, 1);
 uniform int noise_type : hint_enum("OpenSimplex2", "Cellular", "Perlin", "Value") = 0;
@@ -249,7 +249,7 @@ uniform int character_speed: hint_enum("Slow:30", "Average:60", "Very Fast:200")
 
 GDSS:
 
-```
+```gdscript
 @uniform(source_color) var color: vec4
 @uniform(hint_range(0, 1)) var amount: float
 @uniform(hint_enum("OpenSimplex2", "Cellular", "Perlin", "Value"))
@@ -262,7 +262,7 @@ var character_speed: int = 60
 
 GSL:
 
-```
+```glsl
 group_uniforms MyGroup.MySubgroup;
 uniform sampler2D test;
 group_uniforms; // Close uniform group.
@@ -270,7 +270,7 @@ group_uniforms; // Close uniform group.
 
 GDSS:
 
-```
+```gdscript
 @group_uniforms(MyGroup.MySubgroup)
 @uniform var test: sampler2D
 @end_group_uniforms # Close uniform group.
@@ -280,13 +280,13 @@ GDSS:
 
 GSL:
 
-```
+```glsl
 global uniform vec4 my_color;
 ```
 
 GDSS:
 
-```
+```gdscript
 @global @uniform var my_color: vec4
 ```
 
@@ -294,13 +294,37 @@ GDSS:
 
 GSL:
 
-```
+```glsl
 instance uniform vec4 my_color : source_color = vec4(1.0, 0.5, 0.0, 1.0);
 ```
 
 GDSS:
 
-```
+```gdscript
 @instance @uniform(source_color)
 var my_color: vec4 = vec4(1.0, 0.5, 0.0, 1.0)
+```
+
+## Pre-processing Directives
+
+GSL:
+
+```glsl
+#define SAMPLE(param1, param2, param3, param4) long_function_call( \
+        param1, \
+        param2, \
+        param3, \
+        param4 \
+)
+```
+
+GDSS:
+
+```gdscript
+@macro(define SAMPLE(param1, param2, param3, param4) long_function_call( \
+        param1, \
+        param2, \
+        param3, \
+        param4 \
+)) # Attention! In @macro you should use GSL code.
 ```
